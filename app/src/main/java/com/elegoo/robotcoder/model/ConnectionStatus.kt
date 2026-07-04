@@ -11,6 +11,7 @@ enum class ConnectionStatus {
     SCANNING,
     CONNECTING,
     CONNECTED,
+    FAILED,
 }
 
 /**
@@ -21,4 +22,5 @@ fun ConnectionStatus.displayLabel(): String = when (this) {
     ConnectionStatus.SCANNING -> "Scanning"
     ConnectionStatus.CONNECTING -> "Connecting"
     ConnectionStatus.CONNECTED -> "Connected"
+    ConnectionStatus.FAILED -> "Failed"
 }
