@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Viper Rover Project</title>
+    <style>
+        :root {
+            color-scheme: dark;
+            --bg: #0f141b;
+            --panel: #17212d;
+            --panel-soft: #1d2a38;
+            --text: #edf3f8;
+            --muted: #a9b7c6;
+            --line: #314255;
+            --teal: #6db7c6;
+            --green: #6fca91;
+            --amber: #d3b46a;
+            --red: #d97878;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at top left, rgba(109, 183, 198, 0.16), transparent 32rem),
+                linear-gradient(135deg, #0f141b 0%, #121b25 52%, #0f141b 100%);
+            color: var(--text);
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            line-height: 1.6;
+        }
+
+        main {
+            width: min(1040px, calc(100% - 32px));
+            margin: 0 auto;
+            padding: 56px 0 32px;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px 28px;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: clamp(2.25rem, 8vw, 4.75rem);
+            line-height: 1;
+            letter-spacing: 0;
+        }
+
+        .subtitle {
+            max-width: 720px;
+            margin: 18px auto 0;
+            color: var(--muted);
+            font-size: clamp(1rem, 2.4vw, 1.25rem);
+        }
+
+        .actions {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 28px;
+        }
+
+        a.button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 44px;
+            padding: 0 18px;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            color: var(--text);
+            background: var(--panel-soft);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        a.button.primary {
+            border-color: rgba(109, 183, 198, 0.72);
+            background: #235468;
+        }
+
+        section {
+            margin-top: 20px;
+            padding: 24px;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: rgba(23, 33, 45, 0.86);
+            box-shadow: 0 18px 48px rgba(0, 0, 0, 0.18);
+        }
+
+        h2 {
+            margin: 0 0 12px;
+            font-size: 1.35rem;
+            letter-spacing: 0;
+        }
+
+        p {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        .status-list {
+            display: grid;
+            gap: 10px;
+            margin: 18px 0 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .status-item {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: 12px;
+            align-items: center;
+            padding: 12px;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: rgba(29, 42, 56, 0.82);
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 999px;
+            background: var(--green);
+        }
+
+        .dot.locked {
+            background: var(--amber);
+        }
+
+        .status-label {
+            font-weight: 700;
+        }
+
+        .badge {
+            padding: 4px 9px;
+            border-radius: 999px;
+            color: #071017;
+            background: var(--green);
+            font-size: 0.8rem;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        .badge.locked {
+            background: var(--amber);
+        }
+
+        .diagram {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-top: 18px;
+        }
+
+        .diagram-box {
+            min-height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: var(--panel-soft);
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .note {
+            margin-top: 12px;
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        footer {
+            padding: 28px 0 10px;
+            color: var(--muted);
+            text-align: center;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 760px) {
+            main {
+                width: min(100% - 20px, 1040px);
+                padding-top: 28px;
+            }
+
+            header {
+                padding: 28px 8px 20px;
+            }
+
+            section {
+                padding: 18px;
+            }
+
+            .status-item {
+                grid-template-columns: auto 1fr;
+            }
+
+            .badge {
+                grid-column: 2;
+                width: fit-content;
+            }
+
+            .diagram {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <header>
+            <h1>Viper Rover Project</h1>
+            <p class="subtitle">ELEGOO Smart Robot Car 4.0 Block Coding System</p>
+            <nav class="actions" aria-label="Project links">
+                <a class="button primary" href="#workspace-note">Workspace</a>
+                <a class="button" href="https://github.com/SeanS-sketch/ViperProject">GitHub Repository</a>
+            </nav>
+        </header>
+
+        <section aria-labelledby="overview-title">
+            <h2 id="overview-title">Project Overview</h2>
+            <p>
+                Viper Rover is being built through an 8-milestone development roadmap for learning
+                robot programming with the ELEGOO Smart Robot Car 4.0. The current focus is the
+                Block Workspace, with Milestone 3 completed as a visual editor for arranging blocks.
+                Future milestones will add richer block types, an execution engine, and Bluetooth
+                control through the Android app.
+            </p>
+        </section>
+
+        <section aria-labelledby="status-title">
+            <h2 id="status-title">Status</h2>
+            <ul class="status-list">
+                <li class="status-item">
+                    <span class="dot" aria-hidden="true"></span>
+                    <span class="status-label">Milestone 1: Project foundation</span>
+                    <span class="badge">Complete</span>
+                </li>
+                <li class="status-item">
+                    <span class="dot" aria-hidden="true"></span>
+                    <span class="status-label">Milestone 2: Bluetooth connection layer</span>
+                    <span class="badge">Complete</span>
+                </li>
+                <li class="status-item">
+                    <span class="dot" aria-hidden="true"></span>
+                    <span class="status-label">Milestone 3: Visual Block Workspace</span>
+                    <span class="badge">Complete</span>
+                </li>
+                <li class="status-item">
+                    <span class="dot locked" aria-hidden="true"></span>
+                    <span class="status-label">Milestones 4-8: Blocks, execution, and rover control</span>
+                    <span class="badge locked">In progress / locked</span>
+                </li>
+            </ul>
+        </section>
+
+        <section aria-labelledby="diagram-title">
+            <h2 id="diagram-title">System Direction</h2>
+            <div class="diagram" aria-label="Simple system diagram">
+                <div class="diagram-box">Android App</div>
+                <div class="diagram-box">Block Workspace</div>
+                <div class="diagram-box">Execution Engine</div>
+                <div class="diagram-box">HC-08 Rover Control</div>
+            </div>
+        </section>
+
+        <section id="workspace-note" aria-labelledby="workspace-title">
+            <h2 id="workspace-title">Workspace</h2>
+            <p>
+                The block workspace is part of the Android app. This GitHub Pages file is a static
+                project preview only and does not run or simulate the Android application.
+            </p>
+            <p class="note">Open the Android project in Android Studio to build and run the workspace.</p>
+        </section>
+
+        <footer>
+            Built for ELEGOO Smart Robot Car Learning System
+        </footer>
+    </main>
+</body>
+</html>
